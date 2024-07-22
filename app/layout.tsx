@@ -1,6 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 
+
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -15,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='w-full bg-neutral-200	'>{children}</body>
+      <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet" />
+
+      <body className="w-full">{children}</body>
     </html>
   );
 }
