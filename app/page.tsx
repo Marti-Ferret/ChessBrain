@@ -5,8 +5,8 @@ import { useCallback } from 'react';
 import ChessBoard from './components/ChessBoard'
 import Link from 'next/link';
 import chessImage from './assets/chess.jpg';
-
-
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Chat() {
   const {
@@ -20,6 +20,12 @@ export default function Chat() {
   } = useChat({
     keepLastMessageOnError: true,
   });
+
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  useEffect(() => {
+    setBackgroundImage(chessImage.src);
+  }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +53,7 @@ export default function Chat() {
 
   return (
 
-    <div className="w-full h-screen bg-cover bg-center z-10 flex flex-row" style={{ backgroundImage: `url(${chessImage.src})` }}>
+    <div className="w-full h-screen bg-cover bg-center z-10 flex flex-row" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className='w-1/2 flex justify-end pt-44 pr-10'>
         <h1 className='text-white text-9xl font-lancelot tracking-wide' style={{ textShadow: '4px 5px 2px black' }}>CHESSBRAIN</h1>
       </div>
