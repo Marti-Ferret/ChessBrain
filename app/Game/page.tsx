@@ -69,7 +69,7 @@ export default function SegundaPagina() {
     };
 
     return (
-        <div className='w-full h-screen ' style={{ backgroundImage: `url(/assets/chessCopia.jpg)`, backgroundSize: `cover` }}>
+        <div className='w-full h-screen ' style={{ backgroundImage: `url(/assets/gameBackground.jpg)`, backgroundSize: `cover` }}>
             <div className='w-full flex justify-center'>
                 <h1 className='text-white text-9xl font-lancelot tracking-wide mt-12' style={{ textShadow: '4px 5px 2px black' }}>CHESSBRAIN</h1>
             </div>
