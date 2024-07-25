@@ -1,6 +1,6 @@
 'use client';
 import { set } from 'zod';
-import ChessBoard from '../components/ChessBoard';
+import ChessBoard from '../components/ChessBoard.js';
 import { useState, useEffect } from 'react';
 
 export default function SegundaPagina() {

@@ -3,9 +3,9 @@
 import React from 'react';
 
 const pieces = {
-    torre_blanca: '/assets/torre_blanc.png',
+    torre_blanca: '../assets/pieces/torre_blanc.png',
     caballo_blanco: '/assets/cavall_blanc.png',
-    alfil_blanco: '/assets/alfil_blanc.png',
+    alfil_blanco: '../assets/pieces/torre_blanc.png',
     dama_blanca: '/assets/reina_blanc.png',
     rey_blanco: '/assets/rei_blanc.png',
     peon_blanco: '/assets/peo_blanc.png',

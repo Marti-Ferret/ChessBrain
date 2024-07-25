@@ -2,7 +2,6 @@
 
 import { useChat } from 'ai/react';
 import { useCallback } from 'react';
-import ChessBoard from './components/ChessBoard'
 import Link from 'next/link';
 import chessImage from './assets/chess.jpg';
 import { useState } from 'react';
