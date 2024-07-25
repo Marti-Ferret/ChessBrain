@@ -3,13 +3,15 @@ import { set } from 'zod';
 import ChessBoard from '../components/ChessBoard.js';
 import { useState, useEffect } from 'react';
 
-export default function SegundaPagina() {
+const Game = () => {
     const [bestMove, setBestMove] = useState<string>('');
     const [initialPosition, setInitialPosition] = useState<string>('');
     const [otherMoves, setOtherMoves] = useState<string[]>([]);
     const [selectedMove, setSelectedMove] = useState<string>('');
     const [result, setResult] = useState<string>('');
     const [option, setOption] = useState<string>('Comprobar');
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,3 +105,4 @@ export default function SegundaPagina() {
         </div>
     );
 }
+export default Game;

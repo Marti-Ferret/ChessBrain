@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos globales adicionales */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html,
+body,
+#__next {
+    height: 100%;
+    width: 100%;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-screen {
+    height: 100vh;
+}

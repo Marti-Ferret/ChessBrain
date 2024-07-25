@@ -1,28 +1,24 @@
-// components/ChessBoard.js
 "use client";
 import React from 'react';
 
-const pieces = {
-    torre_blanca: '../assets/pieces/torre_blanc.png',
-    caballo_blanco: '/assets/cavall_blanc.png',
-    alfil_blanco: '../assets/pieces/torre_blanc.png',
-    dama_blanca: '/assets/reina_blanc.png',
-    rey_blanco: '/assets/rei_blanc.png',
-    peon_blanco: '/assets/peo_blanc.png',
-    torre_negra: '/assets/torre_negre.png',
-    caballo_negro: '/assets/cavall_negre.png',
-    alfil_negro: '/assets/alfil_negre.png',
-    dama_negra: '/assets/reina_negre.png',
-    rey_negro: '/assets/rei_negre.png',
-    peon_negro: '/assets/peo_negre.png'
+const pieces2 = {
+    torre_blanca: '/pieces/torre_blanc.png',
+    caballo_blanco: '/pieces/cavall_blanc.png',
+    alfil_blanco: '/pieces/alfil_blanc.png',
+    dama_blanca: '/pieces/reina_blanc.png',
+    rey_blanco: '/pieces/rei_blanc.png',
+    peon_blanco: '/pieces/peo_blanc.png',
+    torre_negra: '/pieces/torre_negre.png',
+    caballo_negro: '/pieces/cavall_negre.png',
+    alfil_negro: '/pieces/alfil_negre.png',
+    dama_negra: '/pieces/reina_negre.png',
+    rey_negro: '/pieces/rei_negre.png',
+    peon_negro: '/pieces/peo_negre.png'
 };
 
 const initialPositions = [
     "E1:rey_blanco", "D2:peon_blanco", "F3:torre_blanca", "E8:rey_negro", "D7:peon_negro", "C8:torre_negra"
 ];
-
-const bestMove = ["torre_blanca:F3:D3"];
-const otherMoves = ["peon_blanco:D2:D3", "rey_blanco:E1:E2"];
 
 const getBoard = () => {
     const board = Array(8).fill(null).map(() => Array(8).fill(null));
@@ -59,7 +55,7 @@ const ChessBoard = () => {
                     const isBlack = (row + col) % 2 === 1;
                     return (
                         <div key={index} className={`w-[75px] h-[75px] flex items-center justify-center ${isBlack ? 'bg-gray-500' : 'bg-white'}`}>
-                            {piece ? <img src={pieces[piece]} alt={piece} className="w-12 h-12" /> : ''}
+                            {piece ? <img src={pieces2[piece]} alt={piece} className="w-12 h-12" /> : ''}
                         </div>
                     );
                 })}
