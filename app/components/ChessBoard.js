@@ -18,11 +18,11 @@ const pieces = {
 };
 
 const initialPositions = [
-    "E1:rey_blanco", "D2:peon_blanco", "F3:torre_blanca", "E8:rey_negro", "D7:peon_negro", "C6:alfil_negro"
+    "E1:rey_blanco", "D2:peon_blanco", "F3:torre_blanca", "E8:rey_negro", "D7:peon_negro", "C8:torre_negra"
 ];
 
 const bestMove = ["torre_blanca:F3:D3"];
-const otherMoves = ["peon_blanco:D2:D3", "rey_blanco:E1:D1"];
+const otherMoves = ["peon_blanco:D2:D3", "rey_blanco:E1:E2"];
 
 const getBoard = () => {
     const board = Array(8).fill(null).map(() => Array(8).fill(null));

@@ -1,18 +1,43 @@
 import { createOpenAI } from '@ai-sdk/openai';
-import {
-  streamObject,
-  generateText
-} from 'ai';
-import { notificationSchema } from './schema';
-
-
+import { generateText } from 'ai';
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { input } = body;
+    const inputString = '[\n    "E1:rey_blanco", "D2:dama_blanca", "C3:torre_blanca", "E8:rey_negro", "D7:torre_negra"\n],\n\n[\n    "dama_blanca:D2:D7"\n],\n\n[\n    "torre_blanca:C3:C7",\n    "rey_blanco:E1:D1"\n]';
+
+    // Paso 1: Eliminar caracteres de escape y espacios en blanco innecesarios
+    const cleanedString = inputString.replace(/\n/g, '').replace(/,\s*\[/g, '|[');
+
+    // Paso 2: Dividir la cadena en tres partes usando el delimitador "|"
+    const parts = cleanedString.split('|');
+
+    if (parts && parts.length === 3) {
+      // Paso 3: Convertir las partes en arrays
+      const initialPosition = JSON.parse(parts[0]);
+      const bestMove = JSON.parse(parts[1]);
+      const otherMoves = JSON.parse(parts[2]);
+
+      // Crear el objeto de respuesta
+      const responseObject = {
+        initialPosition,
+        bestMove,
+        otherMoves
+      };
+
+
+      return new Response(JSON.stringify(responseObject), {
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      // Manejar el caso en que la cadena no se pueda dividir correctamente
+      console.log(JSON.stringify({ error: "Invalid input format" }));
+      return new Response(JSON.stringify({ error: "Invalid input format" }), {
+        headers: { "Content-Type": "application/json" },
+        status: 400,
+      });
+    }
 
 
 
@@ -22,22 +47,6 @@ export async function POST(req: Request) {
     });
 
     const model = openAi("gpt-4-turbo");
-
-    /*
-    const { text } = await generateText({
-      model: model,
-      system: `Eres un analista político español experto en identificar ideologías y partidos políticos en el contexto de discursos y textos en español.`,
-      prompt: `
-        Actúa como un analista político español. Necesito que analices la siguiente frase para identificar los tres partidos políticos españoles que más se destacan en el contexto de la frase. 
-    
-        Devuélveme la información en el siguiente formato, sin ningún comentario adicional:
-        nombre del partido - porcentaje  
-
-        Aquí está la frase a analizar: "${input}" 
-      `,
-      maxTokens: 150,
-    });
-  */
 
     const { text } = await generateText({
       model: model,
@@ -60,6 +69,7 @@ export async function POST(req: Request) {
           - Reyes: se mueven una casilla en cualquier dirección.
         - No se permite que una pieza salte sobre otra pieza, excepto el caballo.
         - La partida termina con jaque mate al rey contrario, tablas, o bajo ciertas condiciones específicas de la partida.
+        - Me tienes que devolver tres arrays, no me devuelvas texto, ni texto incial, solo tres arrays.
     
         Aquí hay ejemplos de posiciones válidas y movimientos correctos:
         - Ejemplo de posición inicial:
@@ -98,6 +108,7 @@ export async function POST(req: Request) {
         - La posición inicial no sea la posición estándar de inicio.
         - No haya movimientos inválidos como una torre saltando sobre peones.
         - Cada movimiento siga las reglas tradicionales del ajedrez.
+        - Ten en cuenta los movimientos de las piezas que te indique anteriormente.
         - La posición inicial y el mejor movimiento sean claros y precisos.
         - El movimiento no deje piezas importantes desprotegidas o permita una respuesta inmediata y fuerte del oponente.`,
     });
@@ -107,10 +118,6 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ message: text.trim() }), {
       headers: { "Content-Type": "application/json" },
     });
-
-
-
-
 
   } catch (error) {
     return new Response(JSON.stringify({ error: "An error occurred." }), {

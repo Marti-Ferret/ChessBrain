@@ -27,30 +27,6 @@ export default function Chat() {
     setBackgroundImage(chessImage.src);
   }, []);
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("hola");
-    if (input.trim() === '') {
-      return;
-    }
-
-    const response = await fetch("/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ input }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data.message);
-    } else {
-      console.error("An error occurred while processing the request.");
-    }
-  }, [input]);
-
-
   return (
 
     <div className="w-full h-screen bg-cover bg-center z-10 flex flex-row" style={{ backgroundImage: `url(${backgroundImage})` }}>
