@@ -78,6 +78,7 @@ export default function SegundaPagina() {
                     <ChessBoard />
                 </div>
                 <div className='w-1/2 flex pl-20 '>
+                    <h2>Hola</h2>
                     <div className='w-3/5 h-full flex flex-col items gap-8 '>
                         <h2 className='text-white text-5xl text-normal font-lancelot font-semibold pt-4' style={{ textShadow: '1px 2px 1px black' }}>¡Bienvenido a la plataforma de retos de ajedrez!</h2>
                         <div className='gap-6 flex flex-col'>
